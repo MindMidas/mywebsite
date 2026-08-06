@@ -5,7 +5,7 @@ export const cukevision: ProjectInfo = {
   href: "https://github.com/MindMidas/cukevision",
   sourceHref: "https://github.com/MindMidas/cukevision",
   description:
-    "Started as a group course project exploring low-cost food inspection as a binary classification problem: target produce vs non-target objects. When unseen items proved difficult to classify as Other, I continued with CukeVision by improving the dataset, ResNet pipeline, and live app.",
+    "Started as a group project on low-cost food inspection, classifying target produce versus Other. The models recognized the target well but struggled with unseen objects, so I continued the project independently by improving the dataset, ResNet pipeline, and live inspection app.",
   technologies: ["Python", "OpenCV", "PyTorch", "FastAPI", "PySide6"],
   details: [
     { label: "Goal", text: "Build a lower-cost inspection system for cucumber/produce sorting: detect belt objects, classify target vs non-target, and compare the simple NN, Hugging Face model, and ResNet paths before turning the best direction into a live workflow." },

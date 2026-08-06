@@ -4,6 +4,7 @@ import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
+import { ArrowUpRight } from "lucide-react";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
 import EducationSection from "@/components/section/education-section";
@@ -153,6 +154,20 @@ export default function HomePage() {
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              <BlurFade delay={BLUR_FADE_DELAY * 2}>
+                <a
+                  href={DATA.cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                >
+                  CV
+                  <ArrowUpRight
+                    className="size-3.5 opacity-0 transition-opacity group-hover:opacity-100"
+                    aria-hidden
+                  />
+                </a>
+              </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">

@@ -6,7 +6,7 @@ export const orangepill: ProjectInfo = {
   sourceHref: "https://github.com/MindMidas/orangepill",
   websiteHref: "https://orangepill.dev",
   description:
-    "A Nostr service I collaborated on with a builder I met through early Nostr. It offered NIP-05 handles, Lightning forwarding, and paid relay access across CA, US, and EU. We crossed 2000+ users and millions of events on our relays within the first few weeks. One challenge early on was spam, which became the expensive part of running relays.",
+    "A Nostr service I collaborated on with a builder I met through early Nostr. We offered NIP-05 handles, Lightning forwarding, and paid relay access across CA, US, and EU. We crossed 2000+ users and millions of events on our relays within the first few weeks. One challenge early on was spam, which became the expensive part of running relays.",
   technologies: ["Nostr", "Lightning Network", "Node.js", "Docker"],
   details: [
     { label: "Goal", text: "Deploy useful Nostr infrastructure: NIP-05 handles, Lightning forwarding, and paid relay access from one simple service." },
