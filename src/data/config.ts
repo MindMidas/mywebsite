@@ -3,7 +3,7 @@ export const CONFIG = {
   // Site Settings
   // ---------------------------------------------------------------------------
   site: {
-    url: "https://pjm.sh",
+    url: "https://paulmancion.com",
     locale: "en_US",
   },
 

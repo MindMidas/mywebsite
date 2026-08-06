@@ -1,7 +1,7 @@
 <h1 align="center">Portfolio</h1>
 
 <p align="center">
-  My personal site — <a href="https://pjm.sh">pjm.sh</a>
+  My personal site — <a href="https://paulmancion.com">paulmancion.com</a>
 </p>
 
 <p align="center">
