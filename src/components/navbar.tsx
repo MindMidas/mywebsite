@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
+import { ArrowUpRight } from "lucide-react";
 
 const dockIconClassName =
   "rounded-3xl cursor-pointer size-full bg-background p-0 text-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors";
@@ -59,12 +60,22 @@ export default function Navbar() {
   return (
     <div className="fixed inset-x-0 bottom-4 sm:bottom-6 z-30 flex justify-center">
       <Dock className="z-50 relative h-14 p-2 w-fit flex gap-2 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5">
-        <div
-          className="h-10 min-w-16 px-2.5 flex items-center justify-center text-foreground"
+        <a
+          href="/"
+          onClick={(event) => {
+            event.preventDefault();
+            window.history.replaceState(
+              null,
+              "",
+              window.location.pathname + window.location.search
+            );
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="h-10 min-w-16 px-2.5 flex items-center justify-center rounded-3xl text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           aria-label="Paul Mancion"
         >
           <PjmLogo />
-        </div>
+        </a>
 
         <Separator
           orientation="vertical"
@@ -92,6 +103,30 @@ export default function Navbar() {
             </Tooltip>
           );
         })}
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <a
+              href={DATA.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="CV"
+            >
+              <DockIcon className={`${dockIconClassName} group`}>
+                <span className="relative flex size-full items-center justify-center text-xs font-semibold tracking-wide">
+                  <span className="transition-opacity group-hover:opacity-0">
+                    CV
+                  </span>
+                  <ArrowUpRight
+                    className="absolute size-4 opacity-0 transition-opacity group-hover:opacity-100"
+                    aria-hidden
+                  />
+                </span>
+              </DockIcon>
+            </a>
+          </TooltipTrigger>
+          <TooltipLabel label="CV" />
+        </Tooltip>
 
         <Separator
           orientation="vertical"

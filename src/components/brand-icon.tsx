@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Hammer, Search, Zap, type LucideIcon } from "lucide-react";
+import { Database, Hammer, Search, Zap, type LucideIcon } from "lucide-react";
 
 type BrandIconInfo =
   | {
@@ -76,12 +76,25 @@ const brandIcons: Record<string, BrandIconInfo> = {
     alt: "Gradle logo",
     imageClassName: "h-full w-full object-cover",
   },
+  "Hugging Face": {
+    kind: "image",
+    src: "/brand-icons/huggingface-logo.svg",
+    alt: "Hugging Face logo",
+    background: "#32343D",
+    imageClassName: "h-[88%] w-[88%] object-contain",
+  },
   "Java": {
     kind: "image",
     src: "/brand-icons/openjdk-logo.svg",
     alt: "OpenJDK logo",
     background: "#ffffff",
     imageClassName: "h-[72%] w-[88%] object-contain",
+  },
+  "JavaScript": {
+    kind: "image",
+    src: "/brand-icons/javascript-logo.svg",
+    alt: "JavaScript logo",
+    imageClassName: "h-full w-full object-contain",
   },
   "Lightning Network": {
     kind: "symbol",
@@ -167,6 +180,18 @@ const brandIcons: Record<string, BrandIconInfo> = {
     alt: "Python logo",
     imageClassName: "h-[92%] w-[92%] object-contain",
   },
+  "Go": {
+    kind: "image",
+    src: "/brand-icons/go-logo.svg",
+    alt: "Go logo",
+    imageClassName: "h-[70%] w-[92%] object-contain",
+  },
+  "Racket": {
+    kind: "image",
+    src: "/brand-icons/racket-logo.svg",
+    alt: "Racket logo",
+    imageClassName: "h-[88%] w-[88%] object-contain",
+  },
   "React": {
     kind: "image",
     src: "/brand-icons/react-logo.svg",
@@ -189,6 +214,11 @@ const brandIcons: Record<string, BrandIconInfo> = {
     imageClassName: "h-[68%] w-[92%] object-contain",
     hideLabel: true,
     badgeClassName: "h-3.5 w-10",
+  },
+  "SQL": {
+    kind: "symbol",
+    icon: Database,
+    color: "#60a5fa",
   },
   "Supabase": {
     kind: "image",

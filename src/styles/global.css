@@ -549,6 +549,16 @@
     @apply bg-background text-foreground;
   }
 
+  p {
+    text-align: justify;
+    text-align-last: left;
+  }
+
+  p.text-center {
+    text-align: center;
+    text-align-last: center;
+  }
+
   /* Shiki dual theme support */
   .shiki,
   .shiki span {
