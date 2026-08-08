@@ -4,7 +4,6 @@ import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
-import { ArrowUpRight } from "lucide-react";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
 import EducationSection from "@/components/section/education-section";
@@ -140,7 +139,7 @@ export default function HomePage() {
     <main className="min-h-dvh flex flex-col gap-14 relative">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
+          <div className="gap-2 gap-y-6 flex flex-col md:flex-row md:items-center justify-between">
             <div className="gap-2 flex flex-col order-2 md:order-1">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
@@ -150,24 +149,10 @@ export default function HomePage() {
                 showCursor
               />
               <BlurFadeText
-                className="text-muted-foreground max-w-[600px] whitespace-pre-line md:text-lg lg:text-xl"
+                className="block max-w-full text-justify whitespace-pre-line text-muted-foreground [text-align-last:left] md:max-w-[545px] md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
-              <BlurFade delay={BLUR_FADE_DELAY * 2}>
-                <a
-                  href={DATA.cvUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-                >
-                  CV
-                  <ArrowUpRight
-                    className="size-3.5 opacity-0 transition-opacity group-hover:opacity-100"
-                    aria-hidden
-                  />
-                </a>
-              </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">

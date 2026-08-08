@@ -43,7 +43,7 @@ export default function ProjectsSection() {
                     </div>
                     <div className="flex flex-col gap-y-3 items-center justify-center">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{DATA.sections.projects.heading}</h2>
-                        <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
+                        <p className="mx-auto w-full max-w-[34rem] text-justify text-muted-foreground [text-align-last:center] md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
                             {DATA.sections.projects.text}
                         </p>
                     </div>
@@ -56,7 +56,7 @@ export default function ProjectsSection() {
                             size="icon"
                             onClick={showPreviousPage}
                             aria-label="Show previous projects"
-                            className="absolute left-2 top-1/2 z-30 -translate-y-1/2 cursor-pointer rounded-full bg-background/95 shadow-sm pointer-events-auto lg:-left-12"
+                            className="absolute left-2 top-1/2 z-30 hidden -translate-y-1/2 cursor-pointer rounded-full bg-background/95 shadow-sm pointer-events-auto lg:-left-12 lg:inline-flex"
                         >
                             <ChevronLeft className="size-4" aria-hidden />
                         </Button>
@@ -99,12 +99,36 @@ export default function ProjectsSection() {
                             size="icon"
                             onClick={showNextPage}
                             aria-label="Show next projects"
-                            className="absolute right-2 top-1/2 z-30 -translate-y-1/2 cursor-pointer rounded-full bg-background/95 shadow-sm pointer-events-auto lg:-right-12"
+                            className="absolute right-2 top-1/2 z-30 hidden -translate-y-1/2 cursor-pointer rounded-full bg-background/95 shadow-sm pointer-events-auto lg:-right-12 lg:inline-flex"
                         >
                             <ChevronRight className="size-4" aria-hidden />
                         </Button>
                     )}
                 </div>
+                {pageCount > 1 && (
+                    <div className="flex items-center justify-center gap-4 lg:hidden">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="icon"
+                            onClick={showPreviousPage}
+                            aria-label="Show previous projects"
+                            className="size-10 cursor-pointer rounded-full bg-background/95 shadow-sm"
+                        >
+                            <ChevronLeft className="size-4" aria-hidden />
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="icon"
+                            onClick={showNextPage}
+                            aria-label="Show next projects"
+                            className="size-10 cursor-pointer rounded-full bg-background/95 shadow-sm"
+                        >
+                            <ChevronRight className="size-4" aria-hidden />
+                        </Button>
+                    </div>
+                )}
                 {pageCount > 1 && (
                     <div className="text-center text-xs tabular-nums text-muted-foreground">
                         {visibleStart}-{visibleEnd} of {projectCount}

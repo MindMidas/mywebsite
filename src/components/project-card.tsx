@@ -567,9 +567,11 @@ export function ProjectCard({
                 <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-primary">
                   {detail.label}
                 </p>
-                <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
-                  {detail.text}
-                </p>
+                <div className="mt-1 space-y-1.5 text-[11px] leading-snug text-muted-foreground">
+                  {detail.text.split(/\n{2,}/).map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

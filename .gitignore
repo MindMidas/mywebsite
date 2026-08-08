@@ -23,6 +23,10 @@ yarn-error.log*
 pnpm-debug.log*
 codex-*.log
 
+# local review exports
+project-content-for-review/
+project-content-for-review.zip
+
 # environment variables
 .env
 .env.production
