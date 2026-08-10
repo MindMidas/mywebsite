@@ -163,8 +163,8 @@ const brandIcons: Record<string, BrandIconInfo> = {
   },
   "PySide6": {
     kind: "image",
-    src: "/brand-icons/qt-logo.png",
-    alt: "Qt logo",
+    src: "/brand-icons/qt-for-python-logo.png",
+    alt: "Qt for Python logo",
     imageClassName: "h-full w-full object-cover",
   },
   "PyTorch": {

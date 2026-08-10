@@ -36,12 +36,12 @@ function FooterCredits() {
 const sectionComponents: Record<string, React.ReactNode> = {
   about: (
     <section id="about">
-      <div className="flex min-h-0 flex-col gap-y-4">
+      <div className="flex min-h-0 flex-col gap-y-2.5 sm:gap-y-4">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">{DATA.sections.about.heading}</h2>
+          <h2 className="text-lg font-bold sm:text-xl">{DATA.sections.about.heading}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-full text-pretty font-sans text-[13px] leading-relaxed text-muted-foreground dark:prose-invert sm:text-sm md:text-base">
             <Markdown
               components={{
                 a: ({ href, children }) => (
@@ -63,9 +63,9 @@ const sectionComponents: Record<string, React.ReactNode> = {
   ),
   work: (
     <section id="work">
-      <div className="flex min-h-0 flex-col gap-y-6">
+      <div className="flex min-h-0 flex-col gap-y-4 sm:gap-y-6">
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <h2 className="text-xl font-bold">{DATA.sections.work.heading}</h2>
+          <h2 className="text-lg font-bold sm:text-xl">{DATA.sections.work.heading}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 6}>
           <WorkSection />
@@ -75,9 +75,9 @@ const sectionComponents: Record<string, React.ReactNode> = {
   ),
   education: (
     <section id="education">
-      <div className="flex min-h-0 flex-col gap-y-6">
+      <div className="flex min-h-0 flex-col gap-y-4 sm:gap-y-6">
         <BlurFade delay={BLUR_FADE_DELAY * 7}>
-          <h2 className="text-xl font-bold">{DATA.sections.education.heading}</h2>
+          <h2 className="text-lg font-bold sm:text-xl">{DATA.sections.education.heading}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 8}>
           <EducationSection />
@@ -87,24 +87,24 @@ const sectionComponents: Record<string, React.ReactNode> = {
   ),
   skills: (
     <section id="skills">
-      <div className="flex min-h-0 flex-col gap-y-4">
+      <div className="flex min-h-0 flex-col gap-y-2.5 sm:gap-y-4">
         <BlurFade delay={BLUR_FADE_DELAY * 9}>
-          <h2 className="text-xl font-bold">{DATA.sections.skills.heading}</h2>
+          <h2 className="text-lg font-bold sm:text-xl">{DATA.sections.skills.heading}</h2>
         </BlurFade>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {DATA.skills.map((skill, id) => (
             <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-              <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
+              <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-7 w-fit px-3 flex items-center gap-1.5 sm:h-8 sm:px-4 sm:gap-2">
                 {"logos" in skill && skill.logos?.length ? (
                   <span className="flex items-center gap-1">
                     {skill.logos.map((logo) => (
-                      <BrandIcon key={logo} name={logo} className="size-4" />
+                      <BrandIcon key={logo} name={logo} className="size-3.5 sm:size-4" />
                     ))}
                   </span>
                 ) : "icon" in skill && skill.icon ? (
-                  <skill.icon className="size-4 rounded overflow-hidden object-contain" />
+                  <skill.icon className="size-3.5 rounded overflow-hidden object-contain sm:size-4" />
                 ) : null}
-                <span className="text-foreground text-sm font-medium">{skill.name}</span>
+                <span className="text-foreground text-xs font-medium sm:text-sm">{skill.name}</span>
               </div>
             </BlurFade>
           ))}
@@ -136,11 +136,11 @@ export default function HomePage() {
     .map(([key]) => key);
 
   return (
-    <main className="min-h-dvh flex flex-col gap-14 relative">
+    <main className="min-h-dvh flex flex-col gap-10 sm:gap-12 md:gap-14 relative">
       <section id="hero">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 gap-y-6 flex flex-col md:flex-row md:items-center justify-between">
-            <div className="gap-2 flex flex-col order-2 md:order-1">
+        <div className="mx-auto w-full max-w-2xl space-y-6 sm:space-y-8">
+          <div className="gap-2 gap-y-4 flex flex-col md:flex-row md:items-center md:gap-y-6 justify-between">
+            <div className="gap-1.5 flex flex-col order-2 md:order-1 md:gap-2">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
@@ -149,7 +149,7 @@ export default function HomePage() {
                 showCursor
               />
               <BlurFadeText
-                className="block max-w-full text-justify whitespace-pre-line text-muted-foreground [text-align-last:left] md:max-w-[545px] md:text-lg lg:text-xl"
+                className="block max-w-full text-justify whitespace-pre-line text-[15px] leading-relaxed text-muted-foreground [text-align-last:left] sm:text-base md:max-w-[545px] md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />

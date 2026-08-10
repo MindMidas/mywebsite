@@ -49,7 +49,7 @@ function getEducationLogoFitClass(src: string) {
 
 export default function EducationSection() {
   return (
-    <Accordion type="single" collapsible className="w-full grid gap-6">
+    <Accordion type="single" collapsible className="w-full grid gap-4 sm:gap-6">
       {DATA.education.map((education) => {
         const logos = getEducationLogos(education);
         const links = logos
@@ -63,72 +63,74 @@ export default function EducationSection() {
           <AccordionItem
             key={education.school}
             value={education.school}
-            className="w-full border-b-0 grid gap-2"
+            className="w-full border-b-0 grid gap-1.5 sm:gap-2"
           >
             <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
-              <div className="flex items-center gap-x-3 justify-between w-full text-left">
-                <div className="flex items-center gap-x-3 flex-1 min-w-0">
-                  {logos.length > 0 ? (
-                    <div className="flex -space-x-2 flex-none">
-                      {logos.map((logo) => (
+              <div className="grid w-full grid-cols-[auto_minmax(0,1fr)] items-center gap-x-2 text-left sm:gap-x-3">
+                {logos.length > 0 ? (
+                  <div className="flex -space-x-2 flex-none">
+                    {logos.map((logo) => (
+                      <div
+                        key={logo.src}
+                        className="size-8 md:size-10 rounded-full border bg-background p-0.5 shadow ring-2 ring-border"
+                      >
                         <div
-                          key={logo.src}
-                          className="size-8 md:size-10 rounded-full border bg-background p-0.5 shadow ring-2 ring-border"
+                          style={{ background: logo.background ?? "var(--background)" }}
+                          className="size-full rounded-full flex items-center justify-center overflow-hidden"
                         >
-                          <div
-                            style={{ background: logo.background ?? "var(--background)" }}
-                            className="size-full rounded-full flex items-center justify-center overflow-hidden"
-                          >
-                            <img
-                              src={logo.src}
-                              alt={logo.alt}
-                              className={getEducationLogoFitClass(logo.src)}
-                            />
-                          </div>
+                          <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className={getEducationLogoFitClass(logo.src)}
+                          />
                         </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="size-8 md:size-10 rounded-full border bg-muted shadow ring-2 ring-border flex-none" />
-                  )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="size-8 md:size-10 rounded-full border bg-muted shadow ring-2 ring-border flex-none" />
+                )}
 
-                  <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                    <div className="font-semibold leading-none flex items-center gap-2">
-                      {education.school}
-                      <span className="relative inline-flex items-center w-3.5 h-3.5">
+                <div className="min-w-0">
+                  <div className="flex min-w-0 items-start justify-between gap-x-2">
+                    <div className="flex min-w-0 flex-1 items-start gap-1 font-semibold text-xs leading-tight tracking-[-0.025em] sm:text-sm lg:gap-2 lg:tracking-normal">
+                      <span className="min-w-0">
+                        {education.school}
+                      </span>
+                      <span className="relative mt-px inline-flex h-3 w-3 shrink-0 items-center sm:h-3.5 sm:w-3.5">
                         <ChevronRight
                           className={cn(
-                            "absolute h-3.5 w-3.5 shrink-0 text-muted-foreground stroke-2 transition-all duration-300 ease-out",
-                            "translate-x-0 opacity-0",
-                            "group-hover:translate-x-1 group-hover:opacity-100",
+                            "absolute h-3 w-3 shrink-0 text-muted-foreground stroke-2 transition-all duration-300 ease-out sm:h-3.5 sm:w-3.5",
+                            "translate-x-0 opacity-100",
+                            "group-hover:translate-x-0.5",
                             "group-data-[state=open]:opacity-0 group-data-[state=open]:translate-x-0"
                           )}
                         />
                         <ChevronDown
                           className={cn(
-                            "absolute h-3.5 w-3.5 shrink-0 text-muted-foreground stroke-2 transition-all duration-200",
+                            "absolute h-3 w-3 shrink-0 text-muted-foreground stroke-2 transition-all duration-200 sm:h-3.5 sm:w-3.5",
                             "opacity-0 rotate-0",
                             "group-data-[state=open]:opacity-100 group-data-[state=open]:rotate-180"
                           )}
                         />
                       </span>
                     </div>
-                    <div className="font-sans text-sm text-muted-foreground">
-                      {education.degree}
+                    <div className="mt-px flex flex-none items-center gap-1 whitespace-nowrap text-right text-[11px] tabular-nums text-muted-foreground sm:text-xs">
+                      <span>
+                        {education.start} - {education.end}
+                      </span>
                     </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
-                  <span>
-                    {education.start} - {education.end}
-                  </span>
+                  <div className="mt-0.5 font-sans text-[11.5px] leading-tight text-muted-foreground sm:text-xs lg:text-sm lg:leading-normal">
+                    {education.degree}
+                  </div>
                 </div>
               </div>
             </AccordionTrigger>
 
-            <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground">
+            <AccordionContent className="p-0 ml-0 text-xs leading-relaxed text-muted-foreground lg:ml-13 lg:text-sm">
               {"achievements" in education && education.achievements.length > 0 && (
-                <ul className="list-disc pl-4 space-y-1.5">
+                <ul className="list-disc pl-4 space-y-1 sm:space-y-1.5">
                   {education.achievements.map((achievement) => (
                     <li key={achievement}>{achievement}</li>
                   ))}
@@ -136,7 +138,7 @@ export default function EducationSection() {
               )}
 
               {links.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-1.5 sm:mt-3 sm:gap-2">
                   {links.map((link) => (
                     <a
                       key={`${education.school}-${link.label}`}

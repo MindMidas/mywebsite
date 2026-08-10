@@ -15,7 +15,7 @@ const PROJECT_INSPECT_SLIDESHOW_SETTLE_MS = 900;
 const DEFAULT_PROJECT_MEDIA_GRADIENT =
   "#0ea5e9";
 const projectMediaBackdrop =
-  "relative flex h-52 w-full items-center justify-center overflow-hidden bg-slate-900 sm:aspect-[16/10] sm:h-auto";
+  "relative flex h-44 w-full items-center justify-center overflow-hidden bg-slate-900 sm:aspect-[16/10] sm:h-auto";
 const projectMediaGlow =
   "pointer-events-none absolute inset-0 bg-transparent";
 const projectMediaAsset =
@@ -332,7 +332,7 @@ function ProjectTitleMark({
   logoShowName?: boolean;
 }) {
   if (!logo) {
-    return <h3 className="flex h-7 items-center font-semibold leading-tight">{title}</h3>;
+    return <h3 className="flex h-7 items-center text-sm font-semibold leading-tight sm:text-base">{title}</h3>;
   }
 
   if (logoShowName) {
@@ -358,7 +358,7 @@ function ProjectTitleMark({
             className={cn("h-4 w-4 shrink-0 object-contain", logoClassName)}
           />
         )}
-        <span className="truncate text-sm font-semibold leading-none">
+        <span className="truncate text-sm font-semibold leading-none sm:text-base">
           {title}
         </span>
       </div>
@@ -483,7 +483,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "group relative flex h-[540px] flex-col border border-border rounded-xl overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-[560px]",
+        "group relative flex h-[clamp(530px,136vw,560px)] flex-col border border-border rounded-xl overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:h-[600px]",
         href ? "hover:ring-2 cursor-pointer hover:ring-muted" : "hover:ring-1 hover:ring-muted",
         hasDetails && "cursor-default sm:cursor-pointer",
         className
@@ -508,7 +508,7 @@ export function ProjectCard({
         <div className="relative shrink-0">
           {media}
         </div>
-        <div className="p-6 flex flex-col gap-3 flex-1">
+        <div className="flex flex-1 flex-col gap-2 p-3.5 sm:gap-3 sm:p-6">
           <div className="flex items-start justify-between gap-2">
             <div className="flex min-h-7 items-center">
               <ProjectTitleMark
@@ -532,7 +532,7 @@ export function ProjectCard({
               </a>
             )}
           </div>
-          <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-full flex-1 text-pretty font-sans text-[11.5px] leading-snug text-muted-foreground dark:prose-invert sm:text-xs sm:leading-relaxed">
             <Markdown>{description}</Markdown>
           </div>
           {tags && tags.length > 0 && (
@@ -548,7 +548,7 @@ export function ProjectCard({
       {hasDetails && (
         <div
           className={cn(
-            "absolute inset-0 z-20 flex flex-col overflow-hidden bg-background px-2.5 pb-2.5 pt-2 opacity-0 pointer-events-none transition-opacity duration-150 sm:px-3 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-visible:pointer-events-auto group-focus-visible:opacity-100",
+            "absolute inset-0 z-20 flex flex-col overflow-hidden bg-background px-2 pb-2 pt-1.5 opacity-0 pointer-events-none transition-opacity duration-150 sm:px-3 sm:pb-2.5 sm:pt-2 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-visible:pointer-events-auto group-focus-visible:opacity-100",
             isRevealed && "opacity-100 pointer-events-auto"
           )}
         >
@@ -561,13 +561,13 @@ export function ProjectCard({
               logoShowName={logoShowName}
             />
           </div>
-          <div className="mt-2 grid min-h-0 flex-1 content-start gap-2 overflow-y-auto pr-1">
+          <div className="mt-1.5 grid min-h-0 flex-1 content-start gap-1 overflow-hidden pr-1 sm:mt-2 sm:gap-2">
             {details?.map((detail) => (
-              <div key={detail.label} className="rounded-lg border border-border/80 bg-muted/30 p-2">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-primary">
+              <div key={detail.label} className="rounded-lg border border-border/80 bg-muted/30 p-1.5 sm:p-2">
+                <p className="text-[8.5px] font-semibold uppercase tracking-[0.16em] text-primary sm:text-[9.5px]">
                   {detail.label}
                 </p>
-                <div className="mt-1 space-y-1.5 text-[11px] leading-snug text-muted-foreground">
+                <div className="mt-1 space-y-1 text-[10.5px] leading-tight text-muted-foreground sm:space-y-1.5 sm:text-[11.5px] sm:leading-snug">
                   {detail.text.split(/\n{2,}/).map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
