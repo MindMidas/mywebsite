@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const dockIconClassName =
   "rounded-3xl cursor-pointer size-full bg-background p-0 text-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors";
@@ -49,6 +50,103 @@ function TooltipLabel({ label }: { label: string }) {
       <p>{label}</p>
       <TooltipArrow className="fill-primary" />
     </TooltipContent>
+  );
+}
+
+function CvMenu() {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handlePointerDown(event: MouseEvent | TouchEvent) {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const cvButton = (
+    <button
+      type="button"
+      onClick={() => setOpen((current) => !current)}
+      aria-label="Choose CV"
+      aria-expanded={open}
+    >
+      <DockIcon className={`${dockIconClassName} group`}>
+        <span className="relative flex size-full items-center justify-center text-xs font-semibold tracking-wide">
+          <span className="transition-opacity group-hover:opacity-0">CV</span>
+          <ArrowUpRight
+            className="absolute size-4 opacity-0 transition-opacity group-hover:opacity-100"
+            aria-hidden
+          />
+        </span>
+      </DockIcon>
+    </button>
+  );
+
+  return (
+    <div ref={menuRef} className="relative">
+      {open ? (
+        cvButton
+      ) : (
+        <Tooltip>
+          <TooltipTrigger asChild>{cvButton}</TooltipTrigger>
+          <TooltipLabel label="CV" />
+        </Tooltip>
+      )}
+
+      {open ? (
+        <div className="absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-44 -translate-x-1/2 rounded-2xl border border-border bg-card/95 p-2 text-card-foreground shadow-[0_16px_45px_-18px_rgba(0,0,0,0.45)] backdrop-blur-3xl dark:shadow-[0_16px_45px_-18px_rgba(0,0,0,0.85)]">
+          <div className="flex flex-col gap-1">
+            {DATA.cvOptions.map((option) =>
+              option.href ? (
+                <a
+                  key={option.label}
+                  href={option.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span>{option.label}</span>
+                  <ArrowUpRight
+                    className="size-3.5 text-muted-foreground transition-colors group-hover:text-foreground"
+                    aria-hidden
+                  />
+                </a>
+              ) : (
+                <div
+                  key={option.label}
+                  aria-disabled="true"
+                  className="flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground"
+                >
+                  <span>{option.label}</span>
+                  <span className="text-[10px] uppercase tracking-[0.18em]">
+                    Soon
+                  </span>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -104,29 +202,7 @@ export default function Navbar() {
           );
         })}
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <a
-              href={DATA.cvUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="CV"
-            >
-              <DockIcon className={`${dockIconClassName} group`}>
-                <span className="relative flex size-full items-center justify-center text-xs font-semibold tracking-wide">
-                  <span className="transition-opacity group-hover:opacity-0">
-                    CV
-                  </span>
-                  <ArrowUpRight
-                    className="absolute size-4 opacity-0 transition-opacity group-hover:opacity-100"
-                    aria-hidden
-                  />
-                </span>
-              </DockIcon>
-            </a>
-          </TooltipTrigger>
-          <TooltipLabel label="CV" />
-        </Tooltip>
+        <CvMenu />
 
         <Separator
           orientation="vertical"

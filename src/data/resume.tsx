@@ -20,12 +20,18 @@ export const DATA = {
   name: "Paul Mancion",
   initials: "PM",
   sourceCodeUrl: "https://github.com/MindMidas/mywebsite",
-  cvUrl: "/cv.pdf",
+  cvUrl: "/PaulMancion_Resume_FullStack.pdf",
+  cvOptions: [
+    { label: "FullStack", href: "/PaulMancion_Resume_FullStack.pdf" },
+    { label: "AI", href: "/PaulMancion_Resume_AI.pdf" },
+    { label: "Quant" },
+  ],
   description: "A Software Engineer and New Grad with a focus in AI, currently diving deeper into quant. I thrive solving challenging problems and I'm driven to build tools and solutions that help people.",
   summary:
     "I’m third cultured: born in France and shaped by growing up across France, India, and Canada. Moving between cultures and spending much of my youth at boarding school shaped my independence, perspective, and adaptability.\n\nI built my first business at 17 and pursued ideas ever since—launching and pitching ventures, and working with early-stage teams. I [studied computer science and business](#education), and have a keen interest in [AI, algorithms, backend, and quant](#projects). I have significant experience in C/C++, Python, SQL, and machine learning frameworks including PyTorch and scikit-learn, as well as Java, JavaScript, TypeScript, Racket and Go. My hobbies include coding, playing soccer, backpacking, and fishing.",
   avatarUrl: "/paul-mancion.png",
-  ogImage: "/paul-mancion.png",
+  ogImage: "/og-pjm-preview.png",
+  ogImageAlt: "PJM logo",
   sections: {
     about: { order: 1, enabled: true, heading: "About" },
     work: {

@@ -26,24 +26,24 @@ export default function ProjectsSection() {
 
     return (
         <section id="projects">
-            <div className="flex min-h-0 flex-col gap-y-8">
-                <div className="flex flex-col gap-y-4 items-center justify-center">
+            <div className="flex min-h-0 flex-col gap-y-5 sm:gap-y-8">
+                <div className="flex flex-col gap-y-2.5 items-center justify-center sm:gap-y-4">
                     <div className="flex items-center w-full">
                         <div
                             className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent"
 
                         />
                         <div className="border bg-primary z-10 rounded-xl px-4 py-1">
-                            <span className="text-background text-sm font-medium">{DATA.sections.projects.label}</span>
+                            <span className="text-background text-xs font-medium sm:text-sm">{DATA.sections.projects.label}</span>
                         </div>
                         <div
                             className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent"
 
                         />
                     </div>
-                    <div className="flex flex-col gap-y-3 items-center justify-center">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{DATA.sections.projects.heading}</h2>
-                        <p className="mx-auto w-full max-w-[34rem] text-justify text-muted-foreground [text-align-last:center] md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
+                    <div className="flex flex-col gap-y-2 items-center justify-center sm:gap-y-3">
+                        <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">{DATA.sections.projects.heading}</h2>
+                        <p className="mx-auto w-full max-w-[30rem] text-justify text-[13px] leading-relaxed text-muted-foreground [text-align-last:center] sm:max-w-[34rem] sm:text-sm md:text-base lg:text-lg">
                             {DATA.sections.projects.text}
                         </p>
                     </div>
@@ -61,7 +61,7 @@ export default function ProjectsSection() {
                             <ChevronLeft className="size-4" aria-hidden />
                         </Button>
                     )}
-                    <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 auto-rows-fr">
+                    <div className="grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 auto-rows-fr">
                         {visibleProjects.map((project, id) => (
                             <BlurFade
                                 key={id}
@@ -106,7 +106,7 @@ export default function ProjectsSection() {
                     )}
                 </div>
                 {pageCount > 1 && (
-                    <div className="flex items-center justify-center gap-4 lg:hidden">
+                    <div className="flex items-center justify-center gap-3 lg:hidden">
                         <Button
                             type="button"
                             variant="outline"
@@ -117,6 +117,9 @@ export default function ProjectsSection() {
                         >
                             <ChevronLeft className="size-4" aria-hidden />
                         </Button>
+                        <div className="min-w-20 text-center text-xs tabular-nums text-muted-foreground">
+                            {visibleStart}-{visibleEnd} of {projectCount}
+                        </div>
                         <Button
                             type="button"
                             variant="outline"
@@ -130,7 +133,7 @@ export default function ProjectsSection() {
                     </div>
                 )}
                 {pageCount > 1 && (
-                    <div className="text-center text-xs tabular-nums text-muted-foreground">
+                    <div className="hidden text-center text-xs tabular-nums text-muted-foreground lg:block">
                         {visibleStart}-{visibleEnd} of {projectCount}
                     </div>
                 )}
