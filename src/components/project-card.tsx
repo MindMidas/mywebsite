@@ -5,6 +5,7 @@ import { TechBadge } from "@/components/tech-badge";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Markdown from "react-markdown";
 
 const PROJECT_SLIDESHOW_INTERVAL_MS = 5000;
@@ -54,19 +55,38 @@ function ProjectMediaFrame({
 
 function ProjectLinksOverlay({
   links,
+  onPrivateLinkClick,
 }: {
   links?: readonly {
     icon: React.ReactNode;
     type: string;
     href?: string;
+    isPrivate?: boolean;
   }[];
+  onPrivateLinkClick: (event: React.MouseEvent<HTMLElement>) => void;
 }) {
   if (!links?.length) return null;
 
   return (
     <div className="absolute right-2 top-2 z-30 flex flex-wrap justify-end gap-2">
       {links.map((link, idx) => (
-        link.href ? (
+        link.isPrivate ? (
+          <button
+            type="button"
+            key={idx}
+            className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            onClick={onPrivateLinkClick}
+            aria-haspopup="dialog"
+          >
+            <Badge
+              className="flex h-7 items-center gap-1.5 px-2.5 text-[11px] bg-black text-white hover:bg-black/90"
+              variant="default"
+            >
+              {link.icon}
+              {link.type}
+            </Badge>
+          </button>
+        ) : link.href ? (
           <a
             href={link.href}
             key={idx}
@@ -94,6 +114,70 @@ function ProjectLinksOverlay({
         )
       ))}
     </div>
+  );
+}
+
+function PrivateSourceDialog({
+  title,
+  onClose,
+}: {
+  title: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  const dialogTitleId = `private-source-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={dialogTitleId}
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-sm rounded-xl border border-border bg-background/95 p-5 shadow-2xl backdrop-blur-md"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <p
+          id={dialogTitleId}
+          className="text-base font-semibold tracking-tight"
+        >
+          This repo is private
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          I keep the {title} source code private because it is not something I
+          want fully public. Reach out and I can share access if needed.
+        </p>
+        <div className="mt-5 flex flex-wrap justify-end gap-2">
+          <button
+            type="button"
+            className="inline-flex h-9 items-center rounded-md border border-input bg-background px-4 text-sm font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            onClick={onClose}
+          >
+            Close
+          </button>
+          <a
+            href="mailto:connect@paulmancion.com?subject=Project%20source%20access"
+            className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            onClick={(event) => event.stopPropagation()}
+          >
+            Reach out
+          </a>
+        </div>
+      </div>
+    </div>,
+    document.body
   );
 }
 
@@ -394,6 +478,7 @@ function ProjectTitleMark({
 interface Props {
   title: string;
   href?: string;
+  hrefPrivate?: boolean;
   description: string;
   tags: readonly string[];
   image?: string;
@@ -414,6 +499,7 @@ interface Props {
     icon: React.ReactNode;
     type: string;
     href?: string;
+    isPrivate?: boolean;
   }[];
   className?: string;
 }
@@ -421,6 +507,7 @@ interface Props {
 export function ProjectCard({
   title,
   href,
+  hrefPrivate,
   description,
   tags,
   image,
@@ -438,7 +525,14 @@ export function ProjectCard({
   className,
 }: Props) {
   const [isRevealed, setIsRevealed] = useState(false);
+  const [isPrivateNoticeOpen, setIsPrivateNoticeOpen] = useState(false);
   const hasDetails = Boolean(details?.length);
+
+  const openPrivateNotice = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsPrivateNoticeOpen(true);
+  };
 
   const shouldHandleTapReveal = () => (
     typeof window !== "undefined"
@@ -495,7 +589,7 @@ export function ProjectCard({
       onClick={toggleReveal}
       onKeyDown={toggleRevealFromKeyboard}
     >
-      <ProjectLinksOverlay links={links} />
+      <ProjectLinksOverlay links={links} onPrivateLinkClick={openPrivateNotice} />
 
       <div
         className={cn(
@@ -519,7 +613,17 @@ export function ProjectCard({
                 logoShowName={logoShowName}
               />
             </div>
-            {href && (
+            {href && hrefPrivate ? (
+              <button
+                type="button"
+                className="rounded-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                aria-label={`Request access to ${title}`}
+                aria-haspopup="dialog"
+                onClick={openPrivateNotice}
+              >
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </button>
+            ) : href ? (
               <a
                 href={href}
                 target="_blank"
@@ -530,7 +634,7 @@ export function ProjectCard({
               >
                 <ArrowUpRight className="h-4 w-4" aria-hidden />
               </a>
-            )}
+            ) : null}
           </div>
           <div className="prose max-w-full flex-1 text-pretty font-sans text-[11.5px] leading-snug text-muted-foreground dark:prose-invert sm:text-xs sm:leading-relaxed">
             <Markdown>{description}</Markdown>
@@ -576,6 +680,13 @@ export function ProjectCard({
             ))}
           </div>
         </div>
+      )}
+
+      {isPrivateNoticeOpen && (
+        <PrivateSourceDialog
+          title={title}
+          onClose={() => setIsPrivateNoticeOpen(false)}
+        />
       )}
     </div>
   );
