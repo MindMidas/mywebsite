@@ -73,6 +73,7 @@ export default function ProjectsSection() {
                             >
                                 <ProjectCard
                                     href={project.href || undefined}
+                                    hrefPrivate={"hrefPrivate" in project ? project.hrefPrivate : undefined}
                                     title={project.title}
                                     description={project.description}
                                     tags={project.technologies}

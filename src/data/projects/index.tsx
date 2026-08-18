@@ -34,6 +34,7 @@ export const projects = projectFiles.map((project) => ({
           {
             type: "Source",
             href: project.sourceHref,
+            isPrivate: project.sourcePrivate,
             icon: <Icons.github className="size-3" />,
           },
         ]
@@ -43,6 +44,7 @@ export const projects = projectFiles.map((project) => ({
           {
             type: "Website",
             href: project.websiteHref,
+            isPrivate: project.websitePrivate,
             icon: <Icons.globe className="size-3" />,
           },
         ]

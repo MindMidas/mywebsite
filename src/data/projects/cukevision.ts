@@ -3,7 +3,9 @@ import type { ProjectInfo } from "./types";
 export const cukevision: ProjectInfo = {
   title: "CukeVision",
   href: "https://github.com/MindMidas/cukevision",
+  hrefPrivate: true,
   sourceHref: "https://github.com/MindMidas/cukevision",
+  sourcePrivate: true,
   description:
     "CukeVision started as a group project on low-cost food inspection comparing NN, HF MobileNetV2, "
       + "and ResNet18 on a binary classification problem (Target-Produce vs. Other). The models had "
