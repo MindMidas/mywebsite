@@ -4,6 +4,7 @@ export const orangepill: ProjectInfo = {
   title: "Orangepill",
   href: "https://orangepill.dev",
   sourceHref: "https://github.com/MindMidas/orangepill",
+  sourcePrivate: true,
   websiteHref: "https://orangepill.dev",
   description:
     "A Nostr service I collaborated on with a builder I met through early Nostr. We offered "

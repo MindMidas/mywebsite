@@ -6,8 +6,11 @@ export type ProjectDetail = {
 export type ProjectInfo = {
   title: string;
   href: string;
+  hrefPrivate?: boolean;
   sourceHref?: string;
+  sourcePrivate?: boolean;
   websiteHref?: string;
+  websitePrivate?: boolean;
   description: string;
   technologies: readonly string[];
   details: readonly ProjectDetail[];

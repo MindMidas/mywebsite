@@ -3,7 +3,9 @@ import type { ProjectInfo } from "./types";
 export const autopilot: ProjectInfo = {
   title: "Autopilot",
   href: "https://github.com/MindMidas/autopilot",
+  hrefPrivate: true,
   sourceHref: "https://github.com/MindMidas/autopilot",
+  sourcePrivate: true,
   description:
     "What began as a research project (Rocket.ai) in University turned into my passion project. "
       + "I tested whether ML models could automate a trading strategy and match/outperform the "
