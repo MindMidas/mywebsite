@@ -100,7 +100,7 @@ export const DATA = {
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/paul-jules-mancion-4596941a2/",
+        url: "https://www.linkedin.com/in/paulmancion/",
         icon: Icons.linkedin,
         navbar: true,
       },
