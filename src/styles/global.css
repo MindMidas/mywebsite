@@ -6,6 +6,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* GitHub contribution calendar integration. */
+.react-activity-calendar__tooltip {
+  z-index: 50;
+}
+
+.github-activity {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.github-activity-panel {
+  border-color: var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+
 @keyframes terminal-cursor-blink {
   0%,
   45% {

@@ -5,6 +5,7 @@ import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import Markdown from "react-markdown";
+import ActivitySection from "@/components/section/activity-section";
 import ContactSection from "@/components/section/contact-section";
 import EducationSection from "@/components/section/education-section";
 import PhotosSection from "@/components/section/photos-section";
@@ -118,6 +119,11 @@ const sectionComponents: Record<string, React.ReactNode> = {
         <ProjectsSection />
       </BlurFade>
     </section>
+  ),
+  activity: (
+    <BlurFade delay={BLUR_FADE_DELAY * 12}>
+      <ActivitySection />
+    </BlurFade>
   ),
   photos: <PhotosSection />,
   contact: (

@@ -48,13 +48,18 @@ export const DATA = {
       heading: "Check out some of my work.",
       text: "A few projects that show the kind of software I like building across AI, mobile, algorithms, games, and systems. I work until completion and I'm willing to do the hard and challenging tasks.",
     },
-    photos: {
+    activity: {
       order: 6,
+      enabled: true,
+      heading: "Keeping myself busy",
+    },
+    photos: {
+      order: 7,
       enabled: true,
       heading: "A few moments",
     },
     contact: {
-      order: 7,
+      order: 8,
       enabled: true,
       label: "Contact",
       heading: "Get in touch",
