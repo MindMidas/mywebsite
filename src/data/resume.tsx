@@ -124,7 +124,7 @@ export const DATA = {
     },
     {
       company: "Docushield",
-      title: "Marketing and MVP Lead",
+      title: "Product Growth Lead and Software Engineer Intern",
       logoUrl: "/logos/docushield.png",
       logoBackground: "linear-gradient(90deg, #4c1d95 0%, #6d28d9 52%, #8b5cf6 100%)",
       period: "May 2022 - Nov 2022",
